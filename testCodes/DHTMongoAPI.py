@@ -1,5 +1,7 @@
 from flask import Flask, jsonify
 from pymongo import MongoClient
+from datetime import datetime, timedelta
+import pytz
 
 app = Flask(__name__)
 
@@ -7,7 +9,7 @@ app = Flask(__name__)
 MONGO_HOST = "localhost"
 MONGO_PORT = 27017
 MONGO_DB = "mydatabase"
-MONGO_COLLECTION = "sensor_data"
+MONGO_COLLECTION = "sensor_data_test_dht"
 
 # MongoDB connection setup
 mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
@@ -16,16 +18,20 @@ collection = db[MONGO_COLLECTION]
 
 @app.route('/data', methods=['GET'])
 def get_data():
-    # Query MongoDB for data (assuming you want to retrieve all records)
-    data = list(collection.find({}))
+    # Query MongoDB for the last 3 records
+    data = list(collection.find().sort("_id", -1).limit(3))
     
-    # Convert MongoDB documents to a list of dictionaries
+    # Convert epoch timestamps to IST
+    ist = pytz.timezone('Asia/Kolkata')
     data_list = []
     for record in data:
+        timestamp_utc = datetime.utcfromtimestamp(record["timestamp"])
+        timestamp_ist = timestamp_utc.replace(tzinfo=pytz.utc).astimezone(ist)
+        
         data_list.append({
             "temperature": record["temperature"],
             "humidity": record["humidity"],
-            "timestamp": record["timestamp"]
+            "timestamp": timestamp_ist.strftime('%Y-%m-%d %H:%M:%S %Z%z')
         })
 
     return jsonify(data_list)

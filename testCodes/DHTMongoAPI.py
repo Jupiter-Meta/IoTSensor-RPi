@@ -15,6 +15,7 @@ MONGO_COLLECTION = "sensor_data_test_dht"
 mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 db = mongo_client[MONGO_DB]
 collection = db[MONGO_COLLECTION]
+print(mongo_client)
 
 @app.route('/')
 def welcome():
@@ -41,4 +42,4 @@ def get_data():
     return jsonify(data_list)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=4400, debug=1)
+    app.run(host='0.0.0.0', port=5051, debug=True)

@@ -8,7 +8,7 @@ app = Flask(__name__)
 # Define MongoDB connection information
 MONGO_HOST = "localhost"
 MONGO_PORT = 27017
-MONGO_DB = "mydatabase"
+MONGO_DB = "jm"
 MONGO_COLLECTION = "sensor_data_test_dht"
 
 # MongoDB connection setup

@@ -41,4 +41,4 @@ def get_data():
     return jsonify(data_list)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=4000, debug=1)
+    app.run(host='0.0.0.0', port=4400, debug=1)

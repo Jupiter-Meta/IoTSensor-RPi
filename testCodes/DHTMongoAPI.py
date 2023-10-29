@@ -16,7 +16,11 @@ mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 db = mongo_client[MONGO_DB]
 collection = db[MONGO_COLLECTION]
 
-@app.route('/data', methods=['GET'])
+@app.route('/')
+def welcome():
+    return "welcome"
+
+@app.route('/data')
 def get_data():
     # Query MongoDB for the last 3 records
     data = list(collection.find().sort("_id", -1).limit(3))
@@ -37,4 +41,4 @@ def get_data():
     return jsonify(data_list)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=4000)
+    app.run(host='0.0.0.0', port=4000, debug=1)

@@ -36,7 +36,8 @@ def get_data():
         data_list.append({
             "temperature": record["temperature"],
             "humidity": record["humidity"],
-            "timestamp": timestamp_ist.strftime('%Y-%m-%d %H:%M:%S %Z%z')
+            "timestamp": timestamp_ist.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
+            "timestamp_epoch": record["timestamp"]
         })
 
     return jsonify(data_list)

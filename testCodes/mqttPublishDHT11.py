@@ -1,6 +1,6 @@
 import Adafruit_DHT
 import paho.mqtt.client as mqtt
-import json
+import json, geocoder
 import time
 
 # Define the DHT sensor type (DHT11)
@@ -16,6 +16,16 @@ MQTT_TOPIC = "JM/DHT"
 
 # Initialize MQTT client
 client = mqtt.Client()
+location = geocoder.ip('me')
+print(location)
+if location.ok:
+    latitude = location.latlng[0]
+    longitude = location.latlng[1]
+    print(f"Latitude: {latitude}, Longitude: {longitude}")
+else:
+    latitude = 0.0
+    longitude = 0.0
+    print("Unable to fetch location data.")
 
 try:
     # Attempt to read data from the DHT sensor
@@ -29,7 +39,9 @@ try:
         data = {
             "temperature": temperature,
             "humidity": humidity,
-            "timestamp": timestamp
+            "timestamp": timestamp,
+            "lat": latitude,
+            "lon": longitude
         }
         
         # Convert the data to JSON

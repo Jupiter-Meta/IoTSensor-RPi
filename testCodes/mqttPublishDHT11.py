@@ -17,11 +17,9 @@ MQTT_TOPIC = "JM/DHT"
 # Initialize MQTT client
 client = mqtt.Client()
 location = geocoder.ip('me')
-print(location)
 if location.ok:
     latitude = location.latlng[0]
     longitude = location.latlng[1]
-    print(f"Latitude: {latitude}, Longitude: {longitude}")
 else:
     latitude = 0.0
     longitude = 0.0
@@ -54,6 +52,7 @@ try:
         client.connect(MQTT_BROKER_HOST, MQTT_BROKER_PORT, 60)
         client.publish(MQTT_TOPIC, json_data)
         client.disconnect()
+        print("Data Published")
     else:
         print("Failed to retrieve data from the DHT sensor")
 

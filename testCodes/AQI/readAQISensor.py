@@ -1,9 +1,9 @@
 from sds011 import SDS011
 import time
 
-def read_sds011_sensor(port='/dev/ttyUSB0', baudrate=9600):
+def read_sds011_sensor(port='/dev/ttyUSB0'):
     try:
-        sds = SDS011(port=port, baudrate=baudrate)
+        sds = SDS011(port=port)
         sds.set_work_period(work_time=0)  # Set continuous mode
 
         while True:

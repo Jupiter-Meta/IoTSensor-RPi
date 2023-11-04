@@ -21,7 +21,7 @@ import numpy as np
 class SDS011Reader:
     """This is a wrapper for the implimentation from ronanj"""
 
-    def __init__(self, inport = "COM5"):
+    def __init__(self, inport = "/dev/USBtty0"):
         self.serial = serial.Serial(port=inport,baudrate=9600)
 
     def readValue( self ):

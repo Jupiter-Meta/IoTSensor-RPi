@@ -38,7 +38,7 @@ def get_data(val):
     #         "timestamp_epoch": record["fetchtime"],
     #     })
 
-    return json.loads(json_util.dumps(data))
+    return data
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5051, debug=True)

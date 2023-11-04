@@ -36,7 +36,8 @@ except:
 #Read PM2.5 and PM10    
 AQIsensor = SDS011Reader()
 AQIsensor.sensor_wake()
-print(sensor.readValue())
+print(AQIsensor.readValue())
+AQIsensor.sensor_sleep()
 AQIsensor.close()
 
 data = {

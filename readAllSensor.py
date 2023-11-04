@@ -20,6 +20,7 @@ try:
   co2Sensor = mh_z19.read_all()
   co2 = co2Sensor['co2']
   temperatureco2 = co2Sensor['temperature']
+  print(co2Sensor)
 except:
   co2 = -1
   temperatureco2 = -1
@@ -34,18 +35,21 @@ except:
   temperature = -1
 
 #Read PM2.5 and PM10    
-AQIsensor = SDS011Reader()
-AQIsensor.sensor_wake()
-print(AQIsensor.readValue())
-AQIsensor.sensor_sleep()
-AQIsensor.close()
+try:
+  AQIsensor = SDS011Reader()
+  AQIsensor.sensor_wake()
+  PM = AQIsensor.readValue()
+  AQIsensor.sensor_sleep()
+  AQIsensor.close()
+except:
+  PM = [-1, -1]
 
 data = {
   'lightlevel':lightlevel,
   'co2':co2,
   'temperatureco2':temperatureco2,
-  'pm2_5':0,
-  'pm10':0,
+  'pm2_5':PM[0],
+  'pm10':PM[1],
   'temperature': temperature,
   'humidity': humidity,
   'fetchtime': int(time.time()),

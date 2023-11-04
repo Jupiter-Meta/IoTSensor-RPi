@@ -33,13 +33,9 @@ def get_data():
         timestamp_utc = datetime.utcfromtimestamp(record["fetchtime"])
         timestamp_ist = timestamp_utc.replace(tzinfo=pytz.utc).astimezone(ist)
         
-        data_list.append({
-            "temperature": record["temperature"],
-            "humidity": record["humidity"],
+        data.append({
             "timestamp": timestamp_ist.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
             "timestamp_epoch": record["fetchtime"],
-            "lat": record["lat"],
-            "lon": record["lon"]
         })
 
     return jsonify(data_list)

@@ -27,9 +27,10 @@ except:
 
 #read CO2 level
 try:
-  co2Sensor = mh_z19.read_all()
-  co2 = co2Sensor['co2']
-  temperatureco2 = co2Sensor['temperature']
+    co2Sensor = mh_z19.read_all()
+    co2Sensor = mh_z19.read_all()
+    co2 = co2Sensor['co2']
+    temperatureco2 = co2Sensor['temperature']
 except:
   co2 = -1
   temperatureco2 = -1

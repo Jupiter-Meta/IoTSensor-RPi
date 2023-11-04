@@ -61,10 +61,7 @@ class SDS011:
             ser.write(b)
             
     def process_frame (self,d):
-    #Get and Print the wanted data, and put in into a usable data fromet
- #       try:
-	for i in range(0,10):
-		try: 
+	try: 
 			r = struct.unpack('<HHxxBBB', d[2:])
 			pm25 = r[0]/10.0
 			pm10 = r[1]/10.0
@@ -72,7 +69,7 @@ class SDS011:
 		   # print(r)
 			#print(d)
 			checksum = sum(ord(v) for v in d[2:8])%256
-		except:
+	except:
 			#print("SPI Error")
 			if i==9:
 				print("SPI Error")

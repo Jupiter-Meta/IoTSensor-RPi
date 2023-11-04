@@ -21,10 +21,10 @@ print(mongo_client)
 def welcome():
     return "welcome"
 
-@app.route('/data')
-def get_data():
+@app.route('/data/<val>')
+def get_data(val):
     # Query MongoDB for the last 3 records
-    data = list(collection.find().sort("_id", -1).limit(3))
+    data = list(collection.find().sort("_id", -1).limit(val))
     print(data)
     # Convert epoch timestamps to IST
     ist = pytz.timezone('Asia/Kolkata')
@@ -38,7 +38,7 @@ def get_data():
             "timestamp_epoch": record["fetchtime"],
         })
 
-    return jsonify(data_list)
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5051, debug=True)

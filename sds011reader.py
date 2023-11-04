@@ -1,16 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May  1 15:57:40 2018
-
-Just a wrapper for the implimentation from ronanj
-(https://github.com/aqicn/sds-sensor-reader)
-
-I made only one major change: dividing the value by 10, because that gives
-the correct concentration in mug/m^3
-
-@author: Peter Holl
-"""
-
 import os
 import serial
 import time
@@ -96,3 +83,26 @@ class SDS011Reader:
     
     def close(self):
         self.serial.close()
+
+    def sensor_wake(self):
+        bytes = ['\xaa', #head
+        '\xb4', #command 1
+        '\x06', #data byte 1
+        '\x01', #data byte 2 (set mode)
+        '\x01', #data byte 3 (sleep)
+        '\x00', #data byte 4
+        '\x00', #data byte 5
+        '\x00', #data byte 6
+        '\x00', #data byte 7
+        '\x00', #data byte 8
+        '\x00', #data byte 9
+        '\x00', #data byte 10
+        '\x00', #data byte 11
+        '\x00', #data byte 12
+        '\x00', #data byte 13
+        '\xff', #data byte 14 (device id byte 1)
+        '\xff', #data byte 15 (device id byte 2)
+        '\x05', #checksum
+        '\xab'] #tail
+        for b in bytes:
+            self.serial.write(b)

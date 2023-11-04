@@ -27,16 +27,16 @@ def get_data(val):
     data = list(collection.find().sort("_id", -1).limit(int(val)))
     print(data)
     # Convert epoch timestamps to IST
-    ist = pytz.timezone('Asia/Kolkata')
-    data_list = []
-    for record in data:
-        timestamp_utc = datetime.utcfromtimestamp(record["fetchtime"])
-        timestamp_ist = timestamp_utc.replace(tzinfo=pytz.utc).astimezone(ist)
+    # ist = pytz.timezone('Asia/Kolkata')
+    # data_list = []
+    # for record in data:
+    #     timestamp_utc = datetime.utcfromtimestamp(record["fetchtime"])
+    #     timestamp_ist = timestamp_utc.replace(tzinfo=pytz.utc).astimezone(ist)
         
-        data.append({
-            "timestamp": timestamp_ist.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
-            "timestamp_epoch": record["fetchtime"],
-        })
+    #     data.append({
+    #         "timestamp": timestamp_ist.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
+    #         "timestamp_epoch": record["fetchtime"],
+    #     })
 
     return jsonify(data)
 

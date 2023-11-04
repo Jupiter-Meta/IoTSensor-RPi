@@ -5,9 +5,7 @@ import time
 from lightsensorRead import readLight
 import mh_z19
 import board
-
-# from 
-
+from sds011reader import SDS011Reader
 
 
 #read light sensor
@@ -27,8 +25,6 @@ except:
   temperatureco2 = -1
 
 #Read DHT11
-
-
 try:
   dhtDevice = adafruit_dht.DHT11(board.D17)
   humidity = dhtDevice.humidity
@@ -36,8 +32,12 @@ try:
 except:
   humidity = -1
   temperature = -1
-    
-    
+
+#Read PM2.5 and PM10    
+AQIsensor = SDS011Reader()
+AQIsensor.sensor_wake()
+print(sensor.readValue())
+
 
 data = {
   'lightlevel':lightlevel,

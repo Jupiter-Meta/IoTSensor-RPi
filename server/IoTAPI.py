@@ -25,7 +25,7 @@ def welcome():
 def get_data():
     # Query MongoDB for the last 3 records
     data = list(collection.find().sort("_id", -1).limit(3))
-    
+    print(data)
     # Convert epoch timestamps to IST
     ist = pytz.timezone('Asia/Kolkata')
     data_list = []

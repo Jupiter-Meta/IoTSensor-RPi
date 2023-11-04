@@ -37,7 +37,7 @@ def get_data():
             "temperature": record["temperature"],
             "humidity": record["humidity"],
             "timestamp": timestamp_ist.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
-            "timestamp_epoch": record["timestamp"],
+            "timestamp_epoch": record["fetchtime"],
             "lat": record["lat"],
             "lon": record["lon"]
         })

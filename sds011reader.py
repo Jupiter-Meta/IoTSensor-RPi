@@ -106,3 +106,26 @@ class SDS011Reader:
         '\xab'] #tail
         for b in bytes:
             self.serial.write(b.encode())
+    
+    def sensor_sleep(self,ser):
+        bytes = ['\xaa', #head
+        '\xb4', #command 1
+        '\x06', #data byte 1
+        '\x01', #data byte 2 (set mode)
+        '\x00', #data byte 3 (sleep)
+        '\x00', #data byte 4
+        '\x00', #data byte 5
+        '\x00', #data byte 6
+        '\x00', #data byte 7
+        '\x00', #data byte 8
+        '\x00', #data byte 9
+        '\x00', #data byte 10
+        '\x00', #data byte 11
+        '\x00', #data byte 12
+        '\x00', #data byte 13
+        '\xff', #data byte 14 (device id byte 1)
+        '\xff', #data byte 15 (device id byte 2)
+        '\x05', #checksum+","+
+        '\xab'] #tail
+        for b in bytes:
+            self.serial.write(b.encode())

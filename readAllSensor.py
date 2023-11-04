@@ -15,7 +15,7 @@ except:
 #read CO2 level
 try:
   co2 = mh_z19.read()
-  co2 = co2{'co2'}
+  co2 = co2['co2']
 except:
   co2 = -1
 

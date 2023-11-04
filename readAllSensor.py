@@ -1,9 +1,11 @@
-import Adafruit_DHT
+import adafruit_dht
 import paho.mqtt.client as mqtt
 import json, geocoder
 import time
 from lightsensorRead import readLight
 import mh_z19
+import board
+
 # from 
 
 
@@ -25,11 +27,11 @@ except:
   temperatureco2 = -1
 
 #Read DHT11
-DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 17 # Replace with the actual GPIO pin number
+dhtDevice = adafruit_dht.DHT11(board.D17)
 
 # try:
-humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
+humidity = dhtDevice.humidity
+temperature = dhtDevice.temperature
 print(humidity)
 print(temperature)
 if humidity is not None and temperature is not None:

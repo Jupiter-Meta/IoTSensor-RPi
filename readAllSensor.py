@@ -40,7 +40,7 @@ data = {
   'lightlevel':lightlevel,
   'co2':co2,
   'pm2_5':0,
-  'pm10:0,
+  'pm10':0,
   'temperature': temperature,
   'humidity': humidity,
   'fetchtime': int(time.time()),

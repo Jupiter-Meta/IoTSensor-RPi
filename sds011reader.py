@@ -105,4 +105,4 @@ class SDS011Reader:
         '\x05', #checksum
         '\xab'] #tail
         for b in bytes:
-            self.serial.write(b)
+            self.serial.write(b.encode())

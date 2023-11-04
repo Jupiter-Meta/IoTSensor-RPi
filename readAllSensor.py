@@ -22,21 +22,22 @@ try:
   temperatureco2 = co2Sensor['temperature']
 except:
   co2 = -1
+  temperatureco2 = -1
 
 #Read DHT11
 DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 17 # Replace with the actual GPIO pin number
 
-try:
-  humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
-  print(humidity)
-  print(temperature)
-  if humidity is not None and temperature is not None:
+# try:
+humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
+print(humidity)
+print(temperature)
+if humidity is not None and temperature is not None:
     humidity = -1
     temperature = -1
-except:
-  humidity = -1
-  temperature = -1
+# except:
+#   humidity = -1
+#   temperature = -1
     
     
 

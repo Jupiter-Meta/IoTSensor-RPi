@@ -4,8 +4,17 @@ import json, geocoder
 import time
 from lightsensorRead import readLight
 import mh_z19
-import board
+import board, geocoder
 from sds011reader import SDS011Reader
+
+#get lat and long
+location = geocoder.ip('me')
+if location.ok:
+    latitude = location.latlng[0]
+    longitude = location.latlng[1]
+else:
+    latitude = 0.0
+    longitude = 0.0
 
 
 #read light sensor
@@ -53,7 +62,7 @@ data = {
   'temperature': temperature,
   'humidity': humidity,
   'fetchtime': int(time.time()),
-  'lat':0,
-  'lon':0
+  'lat':latitude,
+  'lon':longitude
 }
 print(data)

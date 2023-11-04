@@ -26,19 +26,28 @@ def get_data(val):
     # Query MongoDB for the last 3 records
     data = list(collection.find().sort("_id", -1).limit(int(val)))
     print(data)
-    # Convert epoch timestamps to IST
-    # ist = pytz.timezone('Asia/Kolkata')
-    # data_list = []
-    # for record in data:
-    #     timestamp_utc = datetime.utcfromtimestamp(record["fetchtime"])
-    #     timestamp_ist = timestamp_utc.replace(tzinfo=pytz.utc).astimezone(ist)
+    Convert epoch timestamps to IST
+    ist = pytz.timezone('Asia/Kolkata')
+    data_list = []
+    for record in data:
+        timestamp_utc = datetime.utcfromtimestamp(record["fetchtime"])
+        timestamp_ist = timestamp_utc.replace(tzinfo=pytz.utc).astimezone(ist)
         
-    #     data.append({
-    #         "timestamp": timestamp_ist.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
-    #         "timestamp_epoch": record["fetchtime"],
-    #     })
+        data_list.append({
+            "timestamp": timestamp_ist.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
+            "timestamp_epoch": record["fetchtime"],
+            "lightlevel":record["lightlevel"],
+            "lat":record["lat"],
+            "lon":record["lon"],
+            "co2":record["co2"],
+            "temperatureco2":record["temperatureco2"],
+            "pm2_5":record["pm2_5"],
+            "pm10":record["pm10"],
+            "temperature":record["temperature"],
+            "humidity":record["humidity"]
+        })
 
-    return data
+    return jsonify(data_list)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5051, debug=True)

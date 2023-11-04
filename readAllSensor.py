@@ -4,20 +4,22 @@ import json, geocoder
 import time
 from lightsensorRead import readLight
 import mh_z19
+from 
 
 
 
 #read light sensor
 try:
-  lightlevel = readLight()
+  lightlevel = round(readLight())
 except:
   lightlevel = -1.0
 #light sensor value is -1 if there is sensor error
 
 #read CO2 level
 try:
-  co2 = mh_z19.read()
-  co2 = co2['co2']
+  co2Sensor = mh_z19.read_all()
+  co2 = co2Sensor['co2']
+  temperatureco2 = co2Sensor['temperature']
 except:
   co2 = -1
 
@@ -39,6 +41,7 @@ except:
 data = {
   'lightlevel':lightlevel,
   'co2':co2,
+  'temperatureco2':temperatureco2,
   'pm2_5':0,
   'pm10':0,
   'temperature': temperature,

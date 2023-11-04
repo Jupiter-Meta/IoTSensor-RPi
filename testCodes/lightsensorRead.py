@@ -21,10 +21,8 @@ def readLight(addr=DEVICE):
   return convertToNumber(data)
  
 def main():
- 
-  while True:
-    print ("Light Level : " + str(readLight()) + " lux")
-    time.sleep(0.5)
+ print ("Light Level : " + str(readLight()) + " lux")
+
    
 if __name__=="__main__":
    main()

@@ -30,7 +30,7 @@ def get_data():
     ist = pytz.timezone('Asia/Kolkata')
     data_list = []
     for record in data:
-        timestamp_utc = datetime.utcfromtimestamp(record["timestamp"])
+        timestamp_utc = datetime.utcfromtimestamp(record["fetchtime"])
         timestamp_ist = timestamp_utc.replace(tzinfo=pytz.utc).astimezone(ist)
         
         data_list.append({

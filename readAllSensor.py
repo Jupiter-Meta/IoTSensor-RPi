@@ -37,7 +37,7 @@ except:
 AQIsensor = SDS011Reader()
 AQIsensor.sensor_wake()
 print(sensor.readValue())
-
+AQIsensor.close()
 
 data = {
   'lightlevel':lightlevel,

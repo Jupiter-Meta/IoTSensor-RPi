@@ -20,7 +20,7 @@ else:
 
 #read light sensor
 try:
-  lightlevel = round(readLight())
+  lightlevel = round(readLight(),2)
 except:
   lightlevel = -1.0
 #light sensor value is -1 if there is sensor error

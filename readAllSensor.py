@@ -67,4 +67,4 @@ data = {
   'lon':longitude
 }
 print(data)
-publish(MQTT_TOPIC,data)
+publish("JM/ALLSENSOR",data)

@@ -5,6 +5,8 @@ import time
 from lightsensorRead import readLight
 import mh_z19
 
+
+
 #read light sensor
 try:
   lightlevel = readLight()
@@ -19,5 +21,30 @@ try:
 except:
   co2 = -1
 
-data = {'lightlevel':lightlevel, 'co2':co2}
+#Read DHT11
+DHT_SENSOR = Adafruit_DHT.DHT11
+DHT_PIN = 4 # Replace with the actual GPIO pin number
+
+try:
+  humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
+  if humidity is not None and temperature is not None:
+    humidity = -1
+    temperature = -1
+except:
+  humidity = -1
+  temperature = -1
+    
+    
+
+data = {
+  'lightlevel':lightlevel,
+  'co2':co2,
+  'pm2_5':0,
+  'pm10:0,
+  'temperature': temperature,
+  'humidity': humidity,
+  'fetchtime': int(time.time()),
+  'lat':0,
+  'lon':0
+}
 print(data)

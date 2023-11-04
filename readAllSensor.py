@@ -6,7 +6,7 @@ from lightsensorRead import readLight
 import mh_z19
 import board, geocoder
 from sds011reader import SDS011Reader
-from mqtthelper import 
+from mqtthelper import publish
 
 #get lat and long
 location = geocoder.ip('me')

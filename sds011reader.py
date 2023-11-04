@@ -107,7 +107,7 @@ class SDS011Reader:
         for b in bytes:
             self.serial.write(b.encode())
     
-    def sensor_sleep(self,ser):
+    def sensor_sleep(self):
         bytes = ['\xaa', #head
         '\xb4', #command 1
         '\x06', #data byte 1

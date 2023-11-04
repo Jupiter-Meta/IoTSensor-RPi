@@ -30,7 +30,6 @@ try:
   co2Sensor = mh_z19.read_all()
   co2 = co2Sensor['co2']
   temperatureco2 = co2Sensor['temperature']
-  print(co2Sensor)
 except:
   co2 = -1
   temperatureco2 = -1

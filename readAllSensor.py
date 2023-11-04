@@ -27,19 +27,15 @@ except:
   temperatureco2 = -1
 
 #Read DHT11
-dhtDevice = adafruit_dht.DHT11(board.D17)
 
-# try:
-humidity = dhtDevice.humidity
-temperature = dhtDevice.temperature
-print(humidity)
-print(temperature)
-if humidity is not None and temperature is not None:
-    humidity = -1
-    temperature = -1
-# except:
-#   humidity = -1
-#   temperature = -1
+
+try:
+  dhtDevice = adafruit_dht.DHT11(board.D17)
+  humidity = dhtDevice.humidity
+  temperature = dhtDevice.temperature
+except:
+  humidity = -1
+  temperature = -1
     
     
 

@@ -27,11 +27,13 @@ def security(fname):
 
 @app.route('/')
 def welcome():
-    return "welcome"
+	security(str(sys._getframe().f_code.co_name))
+	return "welcome"
 
 @app.route('/data/<val>')
 def get_IoT_data(val):
     MONGO_COLLECTION = "IoTSensorData"
+    security(str(sys._getframe().f_code.co_name))
     collection = db[MONGO_COLLECTION]
     # Query MongoDB for the last 3 records
     data = list(collection.find().sort("_id", -1).limit(int(val)))
@@ -62,6 +64,7 @@ def get_IoT_data(val):
 
 @app.route('/weather/<val>')
 def get_Weather_data(val):
+    security(str(sys._getframe().f_code.co_name))
     MONGO_COLLECTION = "weatherKL"
     collection = db[MONGO_COLLECTION]
     # Query MongoDB for the last 3 records

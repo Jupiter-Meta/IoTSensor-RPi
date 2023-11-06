@@ -80,7 +80,7 @@ def get_Weather_data(val):
             "aqi":record["aqi"],
             "no":record["no"],
             "no2":record["no2"],
-            "o3":record["03"],
+            "o3":record["o3"],
             "nh3":record["nh3"],
             "pm2_5":record["pm2_5"],
             "pm10":record["pm10"],

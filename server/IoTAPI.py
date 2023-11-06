@@ -63,7 +63,7 @@ def get_Weather_data(val):
     ist = pytz.timezone('Asia/Kolkata')
     data_list = []
     for record in data:
-        timestamp_utcFT = datetime.utcfromtimestamp(record["fetchtime"])
+        timestamp_utcFT = datetime.utcfromtimestamp(record["fetchTime"])
         timestamp_istFT = timestamp_utcFT.replace(tzinfo=pytz.utc).astimezone(ist)
         
         timestamp_utcUT = datetime.utcfromtimestamp(record["lastUpdate"])

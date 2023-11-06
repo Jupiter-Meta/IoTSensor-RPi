@@ -5,11 +5,12 @@ import time
 from lightsensorRead import readLight
 import mh_z19
 import board, geocoder
-# from sds011reader import SDS011Reader
-import simple_sds011
+import sds011
 from mqtthelper import publish
 
-
+#Connect and wakeup PM Sensor
+sensor = sds011.SDS011("/dev/ttyUSB0", use_query_mode=True)
+sensor.sleep(sleep=0)
 
 #get lat and long
 location = geocoder.ip('me')
@@ -51,8 +52,8 @@ except:
 # try:
 # AQIsensor = SDS011Reader()
 # PM = AQIsensor.readValue()
-pm = simple_sds011.SDS011('/dev/ttyUSB0')
-PM = pm.query()
+PM = sensor.query()
+sensor.sleep()
 # except:
     # PM = [-1, -1]
 
@@ -60,8 +61,8 @@ data = {
   'lightlevel':lightlevel,
   'co2':co2,
   'temperatureco2':temperatureco2,
-  'pm2_5':PM['value']['pm2.5'],
-  'pm10':PM['value']['pm10.0'],
+  'pm2_5':PM[0],
+  'pm10':PM[1],
   'temperature': temperature,
   'humidity': humidity,
   'fetchtime': int(time.time()),

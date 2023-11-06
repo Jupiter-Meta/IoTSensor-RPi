@@ -22,6 +22,7 @@ def security(fname):
 		'clientIP':str(request.environ['REMOTE_ADDR']),
 		'API':fname}
 	MONGO_COLLECTION = "APILOG"
+	collection = db[MONGO_COLLECTION]
 	collection.insert_one(APILog)
     
 

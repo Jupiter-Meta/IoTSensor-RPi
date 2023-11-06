@@ -47,11 +47,11 @@ except:
   temperature = -1
 
 #Read PM2.5 and PM10    
-# try:
-AQIsensor = SDS011Reader()
-PM = AQIsensor.readValue()
-# except:
-#   PM = [-1, -1]
+try:
+    AQIsensor = SDS011Reader()
+    PM = AQIsensor.readValue()
+except:
+    PM = [-1, -1]
 
 data = {
   'lightlevel':lightlevel,

@@ -41,7 +41,7 @@ class SDS011Reader:
             self.serial.write(b)
     
     def readValue(self):
-        sensor_wake()
+        self.sensor_wake()
         time.sleep(15)
         step = 0
         while True: 
@@ -70,6 +70,6 @@ class SDS011Reader:
                     values[step-2]=v
                     step= step+1
         time.sleep(5)
-        sensor_sleep()
+        self.sensor_sleep()
         time.sleep(3)
-        close()
+        self.close()

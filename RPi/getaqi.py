@@ -37,10 +37,10 @@ def calculate_overall_aqi(pm25_value, pm10_value, co2_value):
     overall_aqi = max(aqi_pm25, aqi_pm10, aqi_co2)
     return overall_aqi
 
-# Example usage:
-pm25_value = 30  # Replace with your PM2.5 value
-pm10_value = 40  # Replace with your PM10 value
-co2_value = 1000  # Replace with your CO2 value
+# # Example usage:
+# pm25_value = 30  # Replace with your PM2.5 value
+# pm10_value = 40  # Replace with your PM10 value
+# co2_value = 1000  # Replace with your CO2 value
 
-aqi = calculate_overall_aqi(pm25_value, pm10_value, co2_value)
-print(f"Overall AQI: {aqi}")
+# aqi = calculate_overall_aqi(pm25_value, pm10_value, co2_value)
+# print(f"Overall AQI: {aqi}")

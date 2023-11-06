@@ -18,7 +18,7 @@ mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 db = mongo_client[MONGO_DB]
 
 def security(fname):
-	APILog={'clientAgent':str(request.headers.get('User-Agent')),
+	APILog={'timestamp':time.now(),'clientAgent':str(request.headers.get('User-Agent')),
 		'clientIP':str(request.environ['REMOTE_ADDR']),
 		'API':fname}
 	MONGO_COLLECTION = "APILOG"

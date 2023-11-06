@@ -41,7 +41,7 @@ def get_IoT_data(val):
     collection = db[MONGO_COLLECTION]
     # Query MongoDB for the last 3 records
     data = list(collection.find().sort("_id", -1).limit(int(val)))
-    print(data)
+    # print(data)
     #Convert epoch timestamps to IST
     ist = pytz.timezone('Asia/Kolkata')
     data_list = []
@@ -73,7 +73,7 @@ def get_Weather_data(val):
     collection = db[MONGO_COLLECTION]
     # Query MongoDB for the last 3 records
     data = list(collection.find().sort("_id", -1).limit(int(val)))
-    print(data)
+    # print(data)
     #Convert epoch timestamps to IST
     ist = pytz.timezone('Asia/Kolkata')
     data_list = []

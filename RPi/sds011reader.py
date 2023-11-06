@@ -71,5 +71,5 @@ class SDS011Reader:
                     step= step+1
         time.sleep(5)
         sensor_sleep()
-        (time.sleep(3)
+        time.sleep(3)
         close()

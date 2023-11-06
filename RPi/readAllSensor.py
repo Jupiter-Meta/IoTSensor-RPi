@@ -7,6 +7,7 @@ import mh_z19
 import board, geocoder
 import sds011
 from mqtthelper import publish
+from getaqi import calculate_overall_aqi
 
 #Connect and wakeup PM Sensor
 sensor = sds011.SDS011("/dev/ttyUSB0", use_query_mode=True)
@@ -65,6 +66,7 @@ data = {
   'pm10':PM[1],
   'temperature': temperature,
   'humidity': humidity,
+  'aqi': calculate_overall_aqi(PM[0], PM[1], co2)
   'fetchtime': int(time.time()),
   'lat':latitude,
   'lon':longitude

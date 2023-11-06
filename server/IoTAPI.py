@@ -9,12 +9,12 @@ app = Flask(__name__)
 MONGO_HOST = "localhost"
 MONGO_PORT = 27017
 MONGO_DB = "jm"
-MONGO_COLLECTION = "IoTSensorData"
+# MONGO_COLLECTION = "IoTSensorData"
 
 # MongoDB connection setup
 mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 db = mongo_client[MONGO_DB]
-collection = db[MONGO_COLLECTION]
+
 print(mongo_client)
 
 @app.route('/')
@@ -23,6 +23,8 @@ def welcome():
 
 @app.route('/data/<val>')
 def get_data(val):
+    MONGO_COLLECTION = "IoTSensorData"
+    collection = db[MONGO_COLLECTION]
     # Query MongoDB for the last 3 records
     data = list(collection.find().sort("_id", -1).limit(int(val)))
     print(data)
@@ -40,10 +42,49 @@ def get_data(val):
             "lat":record["lat"],
             "lon":record["lon"],
             "co2":record["co2"],
+            "aqi":record["aqi"],
             "temperatureco2":record["temperatureco2"],
             "pm2_5":record["pm2_5"],
             "pm10":record["pm10"],
             "temperature":record["temperature"],
+            "humidity":record["humidity"]
+        })
+
+    return jsonify(data_list)
+
+@app.route('/weather/<val>')
+def get_data(val):
+    MONGO_COLLECTION = "weatherKL"
+    collection = db[MONGO_COLLECTION]
+    # Query MongoDB for the last 3 records
+    data = list(collection.find().sort("_id", -1).limit(int(val)))
+    print(data)
+    #Convert epoch timestamps to IST
+    ist = pytz.timezone('Asia/Kolkata')
+    data_list = []
+    for record in data:
+        timestamp_utcFT = datetime.utcfromtimestamp(record["fetchtime"])
+        timestamp_istFT = timestamp_utcFT.replace(tzinfo=pytz.utc).astimezone(ist)
+        
+        timestamp_utcUT = datetime.utcfromtimestamp(record["lastUpdate"])
+        timestamp_istUT = timestamp_utcUT.replace(tzinfo=pytz.utc).astimezone(ist)
+        
+        data_list.append({
+            "timestamp": timestamp_istFT.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
+            "timestamp_epoch": record["fetchTime"],
+            "lastUpdate": timestamp_utcUT.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
+            "lastUpdate_epoch": record["lastUpdate"],         
+            "lat": record["lat"],
+            "lon": record["lon"],
+            "luminosity": record["luminosity"],
+            "aqi":record["aqi"],
+            "no":record["no"],
+            "no2":record["no2"],
+            "o3":record["03"],
+            "nh3":record["nh3"],
+            "pm2_5":record["pm2_5"],
+            "pm10":record["pm10"],
+            "temperature":record["temp"],
             "humidity":record["humidity"]
         })
 

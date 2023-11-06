@@ -47,10 +47,7 @@ except:
 #Read PM2.5 and PM10    
 try:
   AQIsensor = SDS011Reader()
-  AQIsensor.sensor_wake()
   PM = AQIsensor.readValue()
-  AQIsensor.sensor_sleep()
-  AQIsensor.close()
 except:
   PM = [-1, -1]
 

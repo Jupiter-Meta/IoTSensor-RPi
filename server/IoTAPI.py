@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
 from datetime import datetime, timedelta
-import pytz,json,sys,time
+import pytz,json,sys,time, geocoder
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -18,9 +18,12 @@ mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 db = mongo_client[MONGO_DB]
 
 def security(fname):
-	APILog={'timestamp':time.now(),'clientAgent':str(request.headers.get('User-Agent')),
+	APILog={'timestamp':int(time.time()),
+		'location': geocoder.ip(str(request.environ['REMOTE_ADDR'])),
+		'clientAgent':str(request.headers.get('User-Agent')),
 		'clientIP':str(request.environ['REMOTE_ADDR']),
 		'API':fname}
+
 	MONGO_COLLECTION = "APILOG"
 	collection = db[MONGO_COLLECTION]
 	collection.insert_one(APILog)

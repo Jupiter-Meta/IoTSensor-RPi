@@ -8,6 +8,8 @@ import board, geocoder
 from sds011reader import SDS011Reader
 from mqtthelper import publish
 
+
+
 #get lat and long
 location = geocoder.ip('me')
 if location.ok:

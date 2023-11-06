@@ -2,7 +2,7 @@ from sds011 import SDS011
 import time
 
 # Replace 'COMx' with the actual COM port number (e.g., 'COM3')
-port = "'dev/ttyUSB0".encode('utf-8')  # Encode the port name as bytes
+port = "'dev/ttyUSB0"  # Encode the port name as bytes
 
 def read_sds011_sensor(port):
     try:

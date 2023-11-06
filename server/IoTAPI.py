@@ -2,9 +2,11 @@ from flask import Flask, jsonify
 from pymongo import MongoClient
 from datetime import datetime, timedelta
 import pytz,json
+from flask_cors import CORS
 
 app = Flask(__name__)
 
+CORS(app)
 # Define MongoDB connection information
 MONGO_HOST = "localhost"
 MONGO_PORT = 27017

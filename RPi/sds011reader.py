@@ -9,13 +9,13 @@ class SDS011Reader:
     """This is a wrapper for the implimentation from ronanj"""
 
     def __init__(self, inport = "/dev/ttyUSB0"):
-        self.serial = serial.Serial(port=inport.encode('utf-8'),baudrate=9600)
+        self.serial = serial.Serial(port=inport,baudrate=9600)
     
     def close(self):
         self.serial.close()
 
     def sensor_wake(self):
-        self.serial.write('\x01')
+        self.serial.write(b'\x01')
     
     def sensor_sleep(self):
         bytes = ['\xaa', #head

@@ -19,7 +19,7 @@ db = mongo_client[MONGO_DB]
 
 def security(fname):
 	APILog={'timestamp':int(time.time()),
-		'location': geocoder.ip(str(request.environ['REMOTE_ADDR'])),
+		'location': str(geocoder.ip(str(request.environ['REMOTE_ADDR']))),
 		'clientAgent':str(request.headers.get('User-Agent')),
 		'clientIP':str(request.environ['REMOTE_ADDR']),
 		'API':fname}

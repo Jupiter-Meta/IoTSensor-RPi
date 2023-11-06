@@ -17,7 +17,13 @@ MONGO_DB = "jm"
 mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 db = mongo_client[MONGO_DB]
 
-print(mongo_client)
+def security(fname):
+	APILog={'clientAgent':str(request.headers.get('User-Agent')),
+		'clientIP':str(request.environ['REMOTE_ADDR']),
+		'API':fname}
+    MONGO_COLLECTION = "APILOG"
+    collection.insert_one(APILog)
+    
 
 @app.route('/')
 def welcome():

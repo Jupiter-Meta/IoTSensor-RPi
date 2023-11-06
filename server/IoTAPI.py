@@ -22,7 +22,7 @@ def welcome():
     return "welcome"
 
 @app.route('/data/<val>')
-def get_data(val):
+def get_IoT_data(val):
     MONGO_COLLECTION = "IoTSensorData"
     collection = db[MONGO_COLLECTION]
     # Query MongoDB for the last 3 records
@@ -53,7 +53,7 @@ def get_data(val):
     return jsonify(data_list)
 
 @app.route('/weather/<val>')
-def get_data(val):
+def get_Weather_data(val):
     MONGO_COLLECTION = "weatherKL"
     collection = db[MONGO_COLLECTION]
     # Query MongoDB for the last 3 records

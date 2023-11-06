@@ -21,8 +21,8 @@ def security(fname):
 	APILog={'clientAgent':str(request.headers.get('User-Agent')),
 		'clientIP':str(request.environ['REMOTE_ADDR']),
 		'API':fname}
-    MONGO_COLLECTION = "APILOG"
-    collection.insert_one(APILog)
+	MONGO_COLLECTION = "APILOG"
+	collection.insert_one(APILog)
     
 
 @app.route('/')

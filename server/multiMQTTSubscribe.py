@@ -67,17 +67,16 @@ def doorSensor(client, userdata, msg):
         
         # Connect to MongoDB
 		mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
-        	db = mongo_client[MONGO_DB]
-        	collection = db[ConferenceRoomAccess]
+		db = mongo_client[MONGO_DB]
+		collection = db[ConferenceRoomAccess]
         
         # Insert the JSON data into MongoDB
-        	collection.insert_one(data)
-        
-        	print("Data inserted into MongoDB:")
-        	print(data)
+		collection.insert_one(data)
+		print("Data inserted into MongoDB:")
+		print(data)
         
         # Disconnect from MongoDB
-        	mongo_client.close()
+	mongo_client.close()
 	except Exception as e:
 		print(f"Error: {str(e)}")
 
@@ -86,10 +85,10 @@ def on_log(client, userdata, level, buf):
 # 	print(client)
 # 	print(userdata)
 # 	print(level)
-  mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
-  db = mongo_client[MONGO_DB]
-  MONGO_COLLECTION = "MQTTLog"
-  collection.insert_one(buf)
+	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+	db = mongo_client[MONGO_DB]
+	MONGO_COLLECTION = "MQTTLog"
+	collection.insert_one(buf)
 	mongo_client.close()
 
 	

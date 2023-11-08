@@ -66,7 +66,7 @@ def doorSensor(client, userdata, msg):
 		data = json.loads(msg.payload.decode())
         
         # Connect to MongoDB
-        	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+		mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
         	db = mongo_client[MONGO_DB]
         	collection = db[ConferenceRoomAccess]
         

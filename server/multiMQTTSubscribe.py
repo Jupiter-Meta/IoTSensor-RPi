@@ -49,7 +49,7 @@ def allSensors(client, userdata, msg):
         	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
         	db = mongo_client[MONGO_DB]
 		MONGO_COLLECTION = "IoTSensorData"
-        	collection = db[MONGO_COLLECTION]
+		collection = db[MONGO_COLLECTION]
         
         # Insert the JSON data into MongoDB
         	collection.insert_one(data)
@@ -70,9 +70,8 @@ def doorSensor(client, userdata, msg):
         # Connect to MongoDB
 		mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 		db = mongo_client[MONGO_DB]
-		
 		MONGO_COLLECTION = "ConferenceRoomAccess"
-        	collection = db[MONGO_COLLECTION]
+		collection = db[MONGO_COLLECTION]
         
         # Insert the JSON data into MongoDB
 		collection.insert_one(data)

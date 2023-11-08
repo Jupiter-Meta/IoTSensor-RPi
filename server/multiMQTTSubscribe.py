@@ -61,25 +61,25 @@ def allSensors(client, userdata, msg):
 		print(f"Error: {str(e)}")
 
 def doorSensor(client, userdata, msg):
-  try:
+	try:
         # Decode the received JSON message
-        data = json.loads(msg.payload.decode())
+		data = json.loads(msg.payload.decode())
         
         # Connect to MongoDB
-        mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
-        db = mongo_client[MONGO_DB]
-        collection = db[ConferenceRoomAccess]
+        	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+        	db = mongo_client[MONGO_DB]
+        	collection = db[ConferenceRoomAccess]
         
         # Insert the JSON data into MongoDB
-        collection.insert_one(data)
+        	collection.insert_one(data)
         
-        print("Data inserted into MongoDB:")
-        print(data)
+        	print("Data inserted into MongoDB:")
+        	print(data)
         
         # Disconnect from MongoDB
-        mongo_client.close()
-    except Exception as e:
-        print(f"Error: {str(e)}")
+        	mongo_client.close()
+	except Exception as e:
+		print(f"Error: {str(e)}")
 
 def on_log(client, userdata, level, buf):
 # 	print("log:",buf)

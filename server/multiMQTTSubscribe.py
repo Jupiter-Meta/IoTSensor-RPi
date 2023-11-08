@@ -35,6 +35,7 @@ def test(client, userdata, message):
 	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 	db = mongo_client[MONGO_DB]
 	MONGO_COLLECTION = "MQTTTest"
+	collection = db[MONGO_COLLECTION]
 	collection.insert_one(mqttData)
 	mongo_client.close()
 	print("DB DUMP suceess for MQTT Test")
@@ -47,7 +48,8 @@ def allSensors(client, userdata, msg):
         # Connect to MongoDB
         	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
         	db = mongo_client[MONGO_DB]
-        	collection = db[IoTSensorData]
+		MONGO_COLLECTION = "IoTSensorData"
+        	collection = db[MONGO_COLLECTION]
         
         # Insert the JSON data into MongoDB
         	collection.insert_one(data)
@@ -68,7 +70,9 @@ def doorSensor(client, userdata, msg):
         # Connect to MongoDB
 		mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 		db = mongo_client[MONGO_DB]
-		collection = db[ConferenceRoomAccess]
+		
+		MONGO_COLLECTION = "ConferenceRoomAccess"
+        	collection = db[MONGO_COLLECTION]
         
         # Insert the JSON data into MongoDB
 		collection.insert_one(data)

@@ -30,8 +30,8 @@ MONGO_DB = "jm"
 
 def test(client, userdata, message):
 	print("Test Channel")
-	print("Received message '" + str(message.payload) + "' on topic '" + message.topic + "' with QoS " + str(message.qos))
-	mqttData={'message':str(message.payload),'topic':message.topic,'qos':str(message.qos)}
+	print("Received message '" + str(message.payload.decode()) + "' on topic '" + message.topic + "' with QoS " + str(message.qos))
+	mqttData={'message':str(message.payload.decode()),'topic':message.topic,'qos':str(message.qos)}
 	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 	db = mongo_client[MONGO_DB]
 	MONGO_COLLECTION = "MQTTTest"
@@ -44,14 +44,13 @@ def allSensors(client, userdata, msg):
 	try:
         	# Decode the received JSON message
         	data = json.loads(msg.payload.decode())
-        
-        # Connect to MongoDB
-        	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
-        	db = mongo_client[MONGO_DB]
+                # Connect to MongoDB
+		mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+		db = mongo_client[MONGO_DB]
 		MONGO_COLLECTION = "IoTSensorData"
 		collection = db[MONGO_COLLECTION]
         
-        # Insert the JSON data into MongoDB
+        	# Insert the JSON data into MongoDB
         	collection.insert_one(data)
         
         	print("Data inserted into MongoDB:")

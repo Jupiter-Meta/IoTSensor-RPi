@@ -45,7 +45,7 @@ def allSensors(client, userdata, msg):
 		data = json.loads(msg.payload.decode())
 		mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 		db = mongo_client[MONGO_DB]
-		MONGO_COLLECTION = "IoTSensorData"
+		MONGO_COLLECTION = "IoTSensorDatas"
 		collection = db[MONGO_COLLECTION]
 		collection.insert_one(data)
 		print("Data inserted into MongoDB:")

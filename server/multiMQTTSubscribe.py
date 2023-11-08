@@ -42,19 +42,14 @@ def test(client, userdata, message):
 	
 def allSensors(client, userdata, msg):
 	try:
-        	# Decode the received JSON message
-        	data = json.loads(msg.payload.decode())
-                # Connect to MongoDB
+		data = json.loads(msg.payload.decode())
 		mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
 		db = mongo_client[MONGO_DB]
 		MONGO_COLLECTION = "IoTSensorData"
 		collection = db[MONGO_COLLECTION]
-        
-        	# Insert the JSON data into MongoDB
-        	collection.insert_one(data)
-        
-        	print("Data inserted into MongoDB:")
-        	print(data)
+		collection.insert_one(data)
+		print("Data inserted into MongoDB:")
+		print(data)
         
         # Disconnect from MongoDB
         	mongo_client.close()

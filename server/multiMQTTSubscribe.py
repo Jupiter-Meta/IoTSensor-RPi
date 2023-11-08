@@ -75,6 +75,27 @@ def doorSensor(client, userdata, msg):
 	except Exception as e:
 		print(f"Error: {str(e)}")
 
+def dht(client, userdata, msg):
+	try:
+        # Decode the received JSON message
+		data = json.loads(msg.payload.decode())
+        
+        # Connect to MongoDB
+		mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+		db = mongo_client[MONGO_DB]
+		MONGO_COLLECTION = "conferenceroomdht"
+		collection = db[MONGO_COLLECTION]
+        
+        # Insert the JSON data into MongoDB
+		collection.insert_one(data)
+		print("Data inserted into MongoDB:")
+		print(data)
+        
+        # Disconnect from MongoDB
+		mongo_client.close()
+	except Exception as e:
+		print(f"Error: {str(e)}")
+
 def on_log(client, userdata, level, buf):
 # 	print("log:",buf)
 # 	print(client)
@@ -101,6 +122,7 @@ def _on_connect(mqttclient, userdata, flags, rc):
 mqttclient.message_callback_add("JM/TEST", test)
 mqttclient.message_callback_add("JM/ALLSENSOR", allSensors)
 mqttclient.message_callback_add("JM/DOORSENSOR", doorSensor)
+mqttclient.message_callback_add("JM/DHT", dht)
 	      
 mqttclient.connect(broker, port, keepalive=1, bind_address="")
   

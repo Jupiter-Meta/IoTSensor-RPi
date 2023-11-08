@@ -50,9 +50,7 @@ def allSensors(client, userdata, msg):
 		collection.insert_one(data)
 		print("Data inserted into MongoDB:")
 		print(data)
-        
-        # Disconnect from MongoDB
-        	mongo_client.close()
+		mongo_client.close()
 	except Exception as e:
 		print(f"Error: {str(e)}")
 

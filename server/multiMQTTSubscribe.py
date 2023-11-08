@@ -76,7 +76,7 @@ def doorSensor(client, userdata, msg):
 		print(data)
         
         # Disconnect from MongoDB
-	mongo_client.close()
+		mongo_client.close()
 	except Exception as e:
 		print(f"Error: {str(e)}")
 

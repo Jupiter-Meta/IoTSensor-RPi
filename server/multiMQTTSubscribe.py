@@ -31,15 +31,13 @@ MONGO_DB = "jm"
 def test(client, userdata, message):
 	print("Test Channel")
 	print("Received message '" + str(message.payload) + "' on topic '" + message.topic + "' with QoS " + str(message.qos))
-	
-  mqttData={'message':str(message.payload),'topic':message.topic,'qos':str(message.qos)}
-	
-  mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
-  db = mongo_client[MONGO_DB]
-  MONGO_COLLECTION = "MQTTTest"
-  collection.insert_one(mqttData)
+	mqttData={'message':str(message.payload),'topic':message.topic,'qos':str(message.qos)}
+	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+	db = mongo_client[MONGO_DB]
+	MONGO_COLLECTION = "MQTTTest"
+	collection.insert_one(mqttData)
 	mongo_client.close()
-  print("DB DUMP suceess for MQTT Test")
+	print("DB DUMP suceess for MQTT Test")
 	
 def allSensors(client, userdata, msg):
    try:

@@ -26,6 +26,17 @@ MONGO_HOST = "localhost"
 MONGO_PORT = 27017
 MONGO_DB = "jm"
 
+def on_log(client, userdata, level, buf):
+# 	print("log:",buf)
+# 	print(client)
+# 	print(userdata)
+# 	print(level)
+	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
+	db = mongo_client[MONGO_DB]
+	MONGO_COLLECTION = "MQTTLog"
+	collection.insert_one(buf)
+	mongo_client.close()
+
 
 
 def test(client, userdata, message):
@@ -41,6 +52,7 @@ def test(client, userdata, message):
 	print("DB DUMP suceess for MQTT Test")
 	
 def allSensors(client, userdata, msg):
+	on_log()
 	try:
 		data = json.loads(msg.payload.decode())
 		mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
@@ -55,6 +67,7 @@ def allSensors(client, userdata, msg):
 		print(f"Error: {str(e)}")
 
 def doorSensor(client, userdata, msg):
+	on_log()
 	try:
         # Decode the received JSON message
 		data = json.loads(msg.payload.decode())
@@ -76,6 +89,7 @@ def doorSensor(client, userdata, msg):
 		print(f"Error: {str(e)}")
 
 def dht(client, userdata, msg):
+	on_log()
 	try:
         # Decode the received JSON message
 		data = json.loads(msg.payload.decode())
@@ -96,16 +110,7 @@ def dht(client, userdata, msg):
 	except Exception as e:
 		print(f"Error: {str(e)}")
 
-def on_log(client, userdata, level, buf):
-# 	print("log:",buf)
-# 	print(client)
-# 	print(userdata)
-# 	print(level)
-	mongo_client = MongoClient(MONGO_HOST, MONGO_PORT)
-	db = mongo_client[MONGO_DB]
-	MONGO_COLLECTION = "MQTTLog"
-	collection.insert_one(buf)
-	mongo_client.close()
+
 
 	
 def _on_message(client, userdata, msg):

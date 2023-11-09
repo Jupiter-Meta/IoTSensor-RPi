@@ -27,7 +27,7 @@ MONGO_PORT = 27017
 MONGO_DB = "jm"
 
 def on_log(client, userdata, level, buf):
-# 	print("log:",buf)
+	print("log:",buf)
 # 	print(client)
 # 	print(userdata)
 # 	print(level)

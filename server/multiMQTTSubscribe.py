@@ -127,7 +127,7 @@ def _on_connect(mqttclient, userdata, flags, rc):
 mqttclient.message_callback_add("JM/TEST", test)
 mqttclient.message_callback_add("JM/ALLSENSOR", allSensors)
 # mqttclient.message_callback_add("JM/DOORSENSOR", doorSensor)
-mqttclient.message_callback_add("JM/sensor1", doorSensor)
+mqttclient.message_callback_add("JM/Sensor1", doorSensor)
 mqttclient.message_callback_add("JM/DHT", dht)
 	      
 mqttclient.connect(broker, port, keepalive=1, bind_address="")

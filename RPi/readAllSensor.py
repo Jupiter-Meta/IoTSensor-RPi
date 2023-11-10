@@ -58,6 +58,12 @@ try:
 except:
     PM = [-1, -1]
 
+#get AQI values
+try:
+    aqi = calculate_overall_aqi(PM[0], PM[1], co2)
+except:
+    aqi = -1
+
 data = {
   'lightlevel':lightlevel,
   'co2':co2,
@@ -66,7 +72,7 @@ data = {
   'pm10':PM[1],
   'temperature': temperature,
   'humidity': humidity,
-  'aqi': 2,
+  'aqi': aqi,
   'fetchtime': int(time.time()),
   'lat':latitude,
   'lon':longitude

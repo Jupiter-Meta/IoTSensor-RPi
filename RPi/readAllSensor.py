@@ -66,7 +66,7 @@ data = {
   'pm10':PM[1],
   'temperature': temperature,
   'humidity': humidity,
-  'aqi': calculate_overall_aqi(PM[0], PM[1], co2),
+  'aqi': 2,
   'fetchtime': int(time.time()),
   'lat':latitude,
   'lon':longitude

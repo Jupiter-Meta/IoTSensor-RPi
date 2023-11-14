@@ -36,7 +36,7 @@ def welcome():
 
 @app.route('/data/<val>')
 def get_IoT_data(val):
-    MONGO_COLLECTION = "IoTSensorData"
+    MONGO_COLLECTION = "iotsensordatas"
     security(str(sys._getframe().f_code.co_name))
     collection = db[MONGO_COLLECTION]
     # Query MongoDB for the last 3 records

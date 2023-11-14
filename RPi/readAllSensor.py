@@ -78,4 +78,5 @@ data = {
   'lon':longitude
 }
 print(data)
-publish("JM/ALLSENSOR",data)
+publish("65.2.135.170","JM/ALLSENSOR",data)
+publish("192.168.1.16","JM/ALLSENSOR",data)

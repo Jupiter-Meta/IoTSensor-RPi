@@ -41,13 +41,13 @@ except:
   temperatureco2 = -1
 
 #Read DHT11
-try:
-  dhtDevice = adafruit_dht.DHT11(board.D17)
-  humidity = dhtDevice.humidity
-  temperature = dhtDevice.temperature
-except:
-  humidity = -1
-  temperature = -1
+# try:
+dhtDevice = adafruit_dht.DHT11(board.D17)
+humidity = dhtDevice.humidity
+temperature = dhtDevice.temperature
+# except:
+#   humidity = -1
+#   temperature = -1
 
 #Read PM2.5 and PM10    
 try:

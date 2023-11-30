@@ -1,4 +1,4 @@
-import adafruit_dht
+import Adafruit_DHT
 import paho.mqtt.client as mqtt
 import json, geocoder
 import time

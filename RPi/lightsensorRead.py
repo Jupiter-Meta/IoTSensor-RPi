@@ -10,7 +10,7 @@ RESET      = 0x07 # Reset data register value
 ONE_TIME_HIGH_RES_MODE = 0x20
 
 try:
- bus = smbus.SMBus(1)  # Rev 2 Pi uses 1
+ bus = smbus.SMBus(0)  # Rev 2 Pi uses 1
 except:
  bus = smbus.SMBus(0)  # Rev 2 Pi uses 1
 

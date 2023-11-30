@@ -1,5 +1,0 @@
-Adafruit-DHT
-paho-mqtt>=1.5
-geocoder
-sds011
-mh_z19

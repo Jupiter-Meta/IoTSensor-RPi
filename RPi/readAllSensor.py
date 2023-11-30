@@ -9,6 +9,15 @@ import sds011
 from mqtthelper import publish
 from getaqi import calculate_overall_aqi
 
+#Read PM2.5 and PM10    
+try:
+    sensor = sds011.SDS011("/dev/ttyUSB0", use_query_mode=True)
+    sensor.sleep(sleep=0)
+    PM = sensor.query()
+    sensor.sleep()
+except:
+    PM = [-1, -1]
+
 #Connect and wakeup PM Sensor
 sensor = sds011.SDS011("/dev/ttyUSB0", use_query_mode=True)
 sensor.sleep(sleep=0)

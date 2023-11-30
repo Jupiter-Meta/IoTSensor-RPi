@@ -4,3 +4,4 @@ paho-mqtt
 geocoder
 mh_z19
 smbus
+board

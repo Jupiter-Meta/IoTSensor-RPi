@@ -19,8 +19,8 @@ except:
     PM = [-1, -1]
 
 #Connect and wakeup PM Sensor
-sensor = sds011.SDS011("/dev/ttyUSB0", use_query_mode=True)
-sensor.sleep(sleep=0)
+# sensor = sds011.SDS011("/dev/ttyUSB0", use_query_mode=True)
+# sensor.sleep(sleep=0)
 
 #get lat and long
 location = geocoder.ip('me')

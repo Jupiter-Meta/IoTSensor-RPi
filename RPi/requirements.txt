@@ -3,4 +3,4 @@ Adafruit-DHT
 paho-mqtt
 geocoder
 mh_z19
-
+smbus

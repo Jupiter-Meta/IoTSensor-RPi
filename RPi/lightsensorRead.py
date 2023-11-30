@@ -9,7 +9,11 @@ POWER_ON   = 0x01 # Power on
 RESET      = 0x07 # Reset data register value
 ONE_TIME_HIGH_RES_MODE = 0x20
 
-bus = smbus.SMBus(1)  # Rev 2 Pi uses 1
+try:
+ bus = smbus.SMBus(1)  # Rev 2 Pi uses 1
+except:
+ bus = smbus.SMBus(0)  # Rev 2 Pi uses 1
+
  
 def convertToNumber(data):
   # Simple function to convert 2 bytes of data

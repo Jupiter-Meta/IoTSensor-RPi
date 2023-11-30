@@ -51,9 +51,10 @@ except:
 
 #Read DHT11
 # try:
-dhtDevice = Adafruit_DHT.DHT11(board.D17)
-humidity = dhtDevice.humidity
-temperature = dhtDevice.temperature
+humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, 17)
+# dhtDevice = Adafruit_DHT.DHT11(board.D17)
+# humidity = dhtDevice.humidity
+# temperature = dhtDevice.temperature
 # except:
 #   humidity = -1
 #   temperature = -1

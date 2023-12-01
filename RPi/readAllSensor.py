@@ -8,6 +8,7 @@ import board, geocoder
 import sds011
 from mqtthelper import publish
 from getaqi import calculate_overall_aqi
+print("Reading Sensor Value")
 
 #Read PM2.5 and PM10    
 try:

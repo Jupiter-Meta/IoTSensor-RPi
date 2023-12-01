@@ -28,10 +28,6 @@ hostname = socket.gethostname()
 eth0_ip = get_interface_ip("eth0")
 wifi_ip = get_interface_ip("wlan0")
 
-print(hostname)
-print(eth0_ip)
-print(wifi_ip)
-
 #Read PM2.5 and PM10    
 try:
     sensor = sds011.SDS011("/dev/ttyUSB0", use_query_mode=True)
@@ -91,17 +87,20 @@ except:
     aqi = -1
 
 data = {
-  'lightlevel':lightlevel,
-  'co2':co2,
-  'temperatureco2':temperatureco2,
-  'pm2_5':PM[0],
-  'pm10':PM[1],
-  'temperature': temperature,
-  'humidity': humidity,
-  'aqi': aqi,
-  'fetchtime': int(time.time()),
-  'lat':latitude,
-  'lon':longitude
+    'devicename':hostname,
+    'eth0_ip':eth0_ip,
+    'wifi_ip':wifi_ip, 
+    'lightlevel':lightlevel,
+    'co2':co2,
+    'temperatureco2':temperatureco2,
+    'pm2_5':PM[0],
+    'pm10':PM[1],
+    'temperature': temperature,
+    'humidity': humidity,
+    'aqi': aqi,
+    'fetchtime': int(time.time()),
+    'lat':latitude,
+    'lon':longitude
 }
 print(data)
 publish("65.2.135.170","JM/ALLSENSOR",data)

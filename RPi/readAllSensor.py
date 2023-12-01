@@ -13,7 +13,7 @@ print("Reading Sensor Value")
 def get_interface_ip(interface_name):
     try:
         addresses = psutil.net_if_addrs()
-        print(addresses)
+        # print(addresses)
         if interface_name in addresses:
             for address in addresses[interface_name]:
                 if address.family == socket.AF_INET:

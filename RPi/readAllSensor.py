@@ -60,7 +60,7 @@ except:
 # try:
 PM = sensor.query()
 sensor.sleep()
-sensor.close()
+serial.close()
 # except:
 #     print("error2")
 #     PM = [-1, -1]

@@ -57,13 +57,13 @@ except:
     temperature = -1
 
 #read PM 2.5 and PM10
-try:
-    PM = sensor.query()
-    sensor.sleep()
-    sensor.close()
-except:
-    print("error2")
-    PM = [-1, -1]
+# try:
+PM = sensor.query()
+sensor.sleep()
+sensor.close()
+# except:
+#     print("error2")
+#     PM = [-1, -1]
 #get AQI values
 try:
     aqi = calculate_overall_aqi(PM[0], PM[1], co2)

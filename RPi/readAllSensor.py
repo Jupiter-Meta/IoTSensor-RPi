@@ -15,7 +15,6 @@ try:
     sensor = sds011.SDS011("/dev/ttyUSB0", use_query_mode=True)
     sensor.sleep(sleep=0)
 except:
-    print("error1")
     PM = [-1, -1]
 
 #Connect and wakeup PM Sensor
@@ -42,7 +41,6 @@ except:
 #read CO2 level
 try:
     co2Sensor = mh_z19.read_all()
-    # co2Sensor = mh_z19.read_all()
     co2 = co2Sensor['co2']
     temperatureco2 = co2Sensor['temperature']
 except:
@@ -57,13 +55,13 @@ except:
     temperature = -1
 
 #read PM 2.5 and PM10
-# try:
-PM = sensor.query()
-sensor.sleep()
-serial.close()
-# except:
-#     print("error2")
-#     PM = [-1, -1]
+try:
+    PM = sensor.query()
+    sensor.sleep()
+
+except:
+    print("error2")
+    PM = [-2, -2]
 #get AQI values
 try:
     aqi = calculate_overall_aqi(PM[0], PM[1], co2)

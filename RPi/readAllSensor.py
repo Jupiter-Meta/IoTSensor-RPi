@@ -1,7 +1,7 @@
 import Adafruit_DHT
 import paho.mqtt.client as mqtt
 import json, geocoder
-import time, socket, psutil
+import time, socket
 from lightsensorRead import readLight
 import mh_z19
 import board, geocoder
@@ -10,23 +10,23 @@ from mqtthelper import publish
 from getaqi import calculate_overall_aqi
 print("Reading Sensor Value")
 
-def get_interface_ip(interface_name):
-    try:
-        addresses = psutil.net_if_addrs()
-        # print(addresses)
-        if interface_name in addresses:
-            for address in addresses[interface_name]:
-                if address.family == socket.AF_INET:
-                    return address.address
-    except Exception as e:
-        return str(e)
+# def get_interface_ip(interface_name):
+#     try:
+#         addresses = psutil.net_if_addrs()
+#         # print(addresses)
+#         if interface_name in addresses:
+#             for address in addresses[interface_name]:
+#                 if address.family == socket.AF_INET:
+#                     return address.address
+#     except Exception as e:
+#         return str(e)
     
-    return "Not found"
+#     return "Not found"
 
-hostname = socket.gethostname()
+# hostname = socket.gethostname()
 
-eth0_ip = get_interface_ip("eth0")
-wifi_ip = get_interface_ip("wlan0")
+# eth0_ip = get_interface_ip("eth0")
+# wifi_ip = get_interface_ip("wlan0")
 
 #Read PM2.5 and PM10    
 try:
@@ -87,9 +87,9 @@ except:
     aqi = -1
 
 data = {
-    'devicename':hostname,
-    'eth0_ip':eth0_ip,
-    'wifi_ip':wifi_ip, 
+    # 'devicename':hostname,
+    # 'eth0_ip':eth0_ip,
+    # 'wifi_ip':wifi_ip, 
     'lightlevel':lightlevel,
     'co2':co2,
     'temperatureco2':temperatureco2,

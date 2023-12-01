@@ -13,8 +13,6 @@ from getaqi import calculate_overall_aqi
 try:
     sensor = sds011.SDS011("/dev/ttyUSB0", use_query_mode=True)
     sensor.sleep(sleep=0)
-    PM = sensor.query()
-    sensor.sleep()
 except:
     PM = [-1, -1]
 
@@ -56,6 +54,13 @@ except:
     humidity = -1
     temperature = -1
 
+#read PM 2.5 and PM10
+try:
+    PM = sensor.query()
+    sensor.sleep()
+    sensor.close()
+except:
+    PM = [-1, -1]
 #get AQI values
 try:
     aqi = calculate_overall_aqi(PM[0], PM[1], co2)

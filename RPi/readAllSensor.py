@@ -15,6 +15,7 @@ try:
     sensor = sds011.SDS011("/dev/ttyUSB0", use_query_mode=True)
     sensor.sleep(sleep=0)
 except:
+    print("error1")
     PM = [-1, -1]
 
 #Connect and wakeup PM Sensor
@@ -61,6 +62,7 @@ try:
     sensor.sleep()
     sensor.close()
 except:
+    print("error2")
     PM = [-1, -1]
 #get AQI values
 try:

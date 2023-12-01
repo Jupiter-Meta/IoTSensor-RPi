@@ -1,7 +1,7 @@
 import Adafruit_DHT
 import paho.mqtt.client as mqtt
 import json, geocoder
-import time, socket
+import time, socket, psutil
 from lightsensorRead import readLight
 import mh_z19
 import board, geocoder
@@ -10,11 +10,26 @@ from mqtthelper import publish
 from getaqi import calculate_overall_aqi
 print("Reading Sensor Value")
 
+def get_interface_ip(interface_name):
+    try:
+        addresses = psutil.net_if_addrs()
+        if interface_name in addresses:
+            for address in addresses[interface_name]:
+                if address.family == socket.AF_INET:
+                    return address.address
+    except Exception as e:
+        return str(e)
+    
+    return "Not found"
+
 hostname = socket.gethostname()
-ip_address = socket.gethostbyname(hostname)
+
+eth0_ip = get_interface_ip("eth0")
+wifi_ip = get_interface_ip("wlan0")
 
 print(hostname)
-print(ip_address)
+print(eth0_ip)
+print(wifi_ip)
 
 #Read PM2.5 and PM10    
 try:

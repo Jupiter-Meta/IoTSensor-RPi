@@ -1,7 +1,7 @@
 import Adafruit_DHT
 import paho.mqtt.client as mqtt
 import json, geocoder
-import time
+import time, socket
 from lightsensorRead import readLight
 import mh_z19
 import board, geocoder
@@ -9,6 +9,12 @@ import sds011
 from mqtthelper import publish
 from getaqi import calculate_overall_aqi
 print("Reading Sensor Value")
+
+hostname = socket.gethostname()
+ip_address = socket.gethostbyname(hostname)
+
+print(hostname)
+print(ip_address)
 
 #Read PM2.5 and PM10    
 try:

@@ -42,7 +42,7 @@ except:
 #read CO2 level
 try:
     co2Sensor = mh_z19.read_all()
-    co2Sensor = mh_z19.read_all()
+    # co2Sensor = mh_z19.read_all()
     co2 = co2Sensor['co2']
     temperatureco2 = co2Sensor['temperature']
 except:
@@ -50,23 +50,11 @@ except:
   temperatureco2 = -1
 
 #Read DHT11
-# try:
-humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, 17)
-# dhtDevice = Adafruit_DHT.DHT11(board.D17)
-# humidity = dhtDevice.humidity
-# temperature = dhtDevice.temperature
-# except:
-#   humidity = -1
-#   temperature = -1
-
-#Read PM2.5 and PM10    
-# try:
-# AQIsensor = SDS011Reader()
-# PM = AQIsensor.readValue()
-#     PM = sensor.query()
-#     sensor.sleep()
-# except:
-#     PM = [-1, -1]
+try:
+    humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, 17)
+except:
+    humidity = -1
+    temperature = -1
 
 #get AQI values
 try:
@@ -89,4 +77,6 @@ data = {
 }
 print(data)
 publish("65.2.135.170","JM/ALLSENSOR",data)
-publish("192.168.1.16","JM/ALLSENSOR",data)
+print("Published to AWS")
+publish("192.168.1.109","JM/ALLSENSOR",data)
+print("Published to Local Edge Node")

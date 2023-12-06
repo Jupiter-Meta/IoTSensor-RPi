@@ -1,0 +1,13 @@
+[Unit]
+Description= IoT MQTT Server Startup Service
+After=mongod.service network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/ubuntu/IoTSensor-RPi/server/multiMQTTSubscribe.py
+
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

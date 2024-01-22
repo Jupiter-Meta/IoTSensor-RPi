@@ -105,5 +105,5 @@ data = {
 print(data)
 publish("65.2.135.170","JM/ALLSENSOR",data)
 print("Published to AWS")
-publish("192.168.1.109","JM/ALLSENSOR",data)
-print("Published to Local Edge Node")
+# publish("192.168.1.109","JM/ALLSENSOR",data)
+# print("Published to Local Edge Node")
